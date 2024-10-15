@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+}
+
+.social-icon img {
+    width: 40px;
+    height: auto;
+}
+
+.social-icon a {
+    text-decoration: none;
+    margin: 0 10px;
+}
