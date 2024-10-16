@@ -1,75 +1,96 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Contact Me</title>
+  <head>
+    <title>Contact Me</title>
 
-        <link rel="stylesheet" href="contact.css">
-        <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="assets/css/contact.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+  </head>
 
-    </head>
-    <body>
-        <nav>
-            <ul style="
-                background-color: rgb(173, 255, 228);
-                list-style-type: none; 
-                display: flex; 
-                gap: 20px; 
-                align-items: center;
-                padding: 20px;">
-                
-                <li>
-                    <img src="assets/logo dumbways.png" alt="" style="height: 27px;">
-                </li>
-                <li>
-                    <a href="index.html" style="text-decoration: none;">Home</a>
-                </li>
-                <li>
-                    <a href="" style="text-decoration: none;">Blog</a>
-                </li>
-                <li style="display: flex; justify-content: flex-end; width: 85%;">
-                    <a href="contact.html" class="btn-contact">Contact Me</a>
-                </li>
-            </ul>
-        </nav>
+  <body>
+    <nav>
+      <ul
+        style="
+          background-color: rgb(173, 255, 228);
+          list-style-type: none;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          padding: 20px;
+        "
+      >
+        <li>
+          <img src="assets/img/logo dumbways.png" alt="" style="height: 27px" />
+        </li>
+        <li>
+          <a href="index.html" style="text-decoration: none">Home</a>
+        </li>
+        <li>
+          <a href="" style="text-decoration: none">Blog</a>
+        </li>
+        <li style="display: flex; justify-content: flex-end; width: 85%">
+          <a href="contact.html" class="btn-contact">Contact Me</a>
+        </li>
+      </ul>
+    </nav>
 
-        <div style="display: flex; justify-content: center; margin-top: 50px;">
-            <form action="" style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
-                <div>
-                    <label for="" style="font-size: larger; text-align: center; font-weight: 600;">GET IN TOUCH</label>
-                </div>
-                <div>
-                    <label for="">Name</label>
-                    <input/>
-                </div>
-                
-                <div>
-                    <label for="">Email</label>
-                    <input/>
-                </div>
-                
-                <div>
-                    <label for="">Phone Number</label>
-                    <input/>
-                </div>
-                
-                <div>
-                    <label for="">Subject</label>
-                            <select name="" id="">
-                                <option value="Fullstack Developer">Fullstack Developer</option>
-                                <option value="Frontend Developer">Frontend Developer</option>
-                                <option value="Backend Developer">Backend Developer</option>
-                            </select>
-                </div>
-                
-                <div>
-                    <label for="">Your Message</label>
-                    <textarea name="" id=""></textarea>
-                </div>
-                
-                <div style="display: flex; justify-content: flex-end;">
-                    <button style="border-radius: 10px; height: 30px; ">Submit</button>
-                </div>
-            </form>
+    <div
+      style="
+        background-color: azure;
+        padding: 48px;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      <form
+        action=""
+        onsubmit="sendToMail(event)"
+        style="display: flex; flex-direction: column; gap: 10px; width: 300px"
+      >
+        <div>
+          <label
+            for=""
+            style="font-size: 25px; text-align: center; font-weight: 600"
+            >GET IN TOUCH</label
+          >
         </div>
-    </body>
+        <div>
+          <label for="">Name</label>
+          <input id="input-name" />
+        </div>
+
+        <div>
+          <label for="">Email</label>
+          <input id="input-email" />
+        </div>
+
+        <div>
+          <label for="">Phone Number</label>
+          <input id="input-number" />
+        </div>
+
+        <div>
+          <label for="">Subject</label>
+          <select name="" id="input-subject">
+            <option value="Fullstack Developer">Fullstack Developer</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="">Your Message</label>
+          <textarea name="" id="input-message"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end">
+          <button style="border-radius: 10px; height: 35px; width: 70px">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="contact.js"></script>
+  </body>
 </html>

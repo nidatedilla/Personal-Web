@@ -3,11 +3,11 @@
 }
 
 .social-icon img {
-    width: 40px;
+    width: 35px;
     height: auto;
 }
 
 .social-icon a {
     text-decoration: none;
-    margin: 0 10px;
+    padding-left: 10px;
 }
