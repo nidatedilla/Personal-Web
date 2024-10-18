@@ -1,0 +1,222 @@
+.form-container {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px grey;
+  width: 300px;
+  margin: 1em auto;
+  background-color: #f9f5f6;
+}
+input{
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container label {
+  display: block;
+}
+
+.date-container {
+  display: flex;
+  justify-content: space-between;
+}
+.date-container input[type="date"] {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.technologies div {
+  width: 49%; /* Lebar tiap checkbox diatur agar pas dua kolom */
+  display: flex;
+  align-items: center; /* Agar checkbox dan label sejajar secara vertikal */
+}
+
+.technologies label {
+  font-size: 14px;
+  color: #333;
+}
+
+.technologies input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.file-name-input-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-right: 40px; /* Untuk ruang icon clip */
+}
+
+.file-name-input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  padding-right: 40px; /* Untuk ruang icon clip */
+}
+.icon-clip {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: auto;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  display: flex;
+  width: 90px;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fddede;
+  cursor: pointer;
+  color: #333;
+  text-align: center;
+  font-size: 14px;
+}
+.custom-file-upload:hover {
+  background-color: #e0e6ed;
+}
+
+.blog {
+  width: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.blog-content {
+  width: 300px;
+  margin: 2em auto;
+  padding: 20px;
+  padding-bottom: 0;
+  border-radius: 10px;
+  background-color: rgb(255, 191, 202);
+  box-shadow: 0 4px 10px grey;
+  overflow: hidden;
+}
+.blog-content div {
+  padding-bottom: 15px;
+}
+
+.blog-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  gap: 30px;
+}
+
+.blog-detail{
+  width: 60%;
+  margin: 2em auto;
+  border-radius: 10px;
+  background-color: #f9f5f6;
+  box-shadow: 0 4px 10px grey;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.blog-detail div{
+  padding: 10px;
+}
+.content-img-container{
+  display: flex;
+  justify-content: space-between;
+}
+.content-img-container div{
+  width: 100%;
+}
+.content-duration-container{
+  display: flex;
+  flex-direction: column;
+}
+.content-duration-container img{
+  width: 35px;
+  margin-left: 8px;
+}
+.content-tech-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.content-tech-container img{
+  width: 30px;
+  height: auto;
+}
+.content-tech-container div{
+  width: 1 1 50%;
+  display: flex;
+  align-items: center;
+}
+
+.div-img-project {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.div-img-project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-img-projet{
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  margin-right: 40px;
+  margin-left: 40px;
+  
+}
+.detail-img-projet img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tech-icon img {
+  width: 35px;
+  height: auto;
+  padding-right: 10px;
+}
+
+.tech-icon a {
+  text-decoration: none;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.btn-container div {
+  width: 45%;
+}
+.btn-container button {
+  width: 100%;
+}

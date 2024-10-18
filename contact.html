@@ -11,41 +11,47 @@
     <nav>
       <ul
         style="
-          background-color: rgb(173, 255, 228);
+          background-color: #fdcedf;
           list-style-type: none;
           display: flex;
           gap: 20px;
           align-items: center;
-          padding: 20px;
+          padding: 10px;
         "
       >
         <li>
-          <img src="assets/img/logo dumbways.png" alt="" style="height: 27px" />
+          <img src="assets/img/girl.png" alt="" style="height: 45px" />
         </li>
         <li>
-          <a href="index.html" style="text-decoration: none">Home</a>
+          <a href="index.html" style="text-decoration: none; color: black"
+            >Home</a
+          >
         </li>
         <li>
-          <a href="" style="text-decoration: none">Blog</a>
+          <a href="blog.html" style="text-decoration: none; color: black"
+            >Blog</a
+          >
         </li>
         <li style="display: flex; justify-content: flex-end; width: 85%">
-          <a href="contact.html" class="btn-contact">Contact Me</a>
+          <a href="contact.html" class="btn-pink">Contact Me</a>
         </li>
       </ul>
     </nav>
 
     <div
       style="
-        background-color: azure;
-        padding: 48px;
-        display: flex;
-        justify-content: center;
+        background-color: #f9f5f6;
+        width: 300px;
+        margin: 1em auto;
+        padding: 30px;
+        box-shadow: 0px 0px 5px gray;
+        border-radius: 8px;
       "
     >
       <form
         action=""
         onsubmit="sendToMail(event)"
-        style="display: flex; flex-direction: column; gap: 10px; width: 300px"
+        style="display: flex; flex-direction: column; gap: 10px; width: 100%"
       >
         <div>
           <label
@@ -72,6 +78,7 @@
         <div>
           <label for="">Subject</label>
           <select name="" id="input-subject">
+            <option disabled selected value>-- Pilih Subject --</option>
             <option value="Fullstack Developer">Fullstack Developer</option>
             <option value="Frontend Developer">Frontend Developer</option>
             <option value="Backend Developer">Backend Developer</option>
@@ -84,13 +91,11 @@
         </div>
 
         <div style="display: flex; justify-content: flex-end">
-          <button style="border-radius: 10px; height: 35px; width: 70px">
-            Submit
-          </button>
+          <button class="btn-pink">Submit</button>
         </div>
       </form>
     </div>
 
-    <script src="contact.js"></script>
+    <script src="assets/js/contact.js"></script>
   </body>
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project Detail</title>
+
+    <link rel="stylesheet" href="assets/css/blog.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+  </head>
+  <body>
+    <nav>
+      <ul
+        style="
+          background-color: #fdcedf;
+          list-style-type: none;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          padding: 10px;
+        "
+      >
+        <li>
+          <img src="assets/img/girl.png" alt="" style="height: 45px" />
+        </li>
+        <li>
+          <a href="index.html" style="text-decoration: none; color: black"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a href="blog.html" style="text-decoration: none; color: black"
+            >Blog</a
+          >
+        </li>
+        <li style="display: flex; justify-content: flex-end; width: 85%">
+          <a href="contact.html" class="btn-pink">Contact Me</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="blog-detail">
+      <h1 id="judul-project" style="text-align: center"></h1>
+      <div class="content-img-container">
+        <div class="detail-img-projet">
+          <img src="" id="gambar-project" alt="" />
+        </div>
+        <div>
+          <div class="content-duration-container">
+            <p style="font-size: 20px">Duration</p>
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+              "
+            >
+              <img src="assets/icon/schedule.png" alt="" />
+              <p>
+                <span id="start-date-project"></span> -
+                <span id="end-date-project"></span>
+              </p>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+              "
+            >
+              <img src="assets/icon/clock.png" alt="" />
+              <p id="durasi-project"></p>
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size: 20px">Technologies</p>
+            <div
+              class="content-tech-container"
+              id="content-tech-container"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-left: 50px; padding-right: 50px">
+        <p
+          style="text-align: justify; font-size: 18px"
+          id="deskripsi-project"
+        ></p>
+      </div>
+    </div>
+
+    <script>
+      // Mengambil data dari Local Storage
+      const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+      // Mendapatkan parameter dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const index = urlParams.get("index");
+
+      function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, "0"); // Mengambil hari dan menambahkan 0 di depan jika perlu
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Mengambil bulan (0-11) dan menambahkan 1, lalu menambahkan 0 di depan jika perlu
+        const year = date.getFullYear(); // Mengambil tahun
+        return `${day}/${month}/${year}`; // Mengembalikan format dd mm yyyy
+      }
+
+      if (index !== null && index < blogs.length) {
+        const blog = blogs[index];
+        document.getElementById("judul-project").innerText = blog.project;
+        document.getElementById("gambar-project").src = blog.image;
+
+        // Format dan tampilkan start date dan end date
+        const startDateFormatted = formatDate(new Date(blog.startDate));
+        const endDateFormatted = formatDate(new Date(blog.endDate));
+
+        document.getElementById("start-date-project").innerText =
+          startDateFormatted;
+        document.getElementById("end-date-project").innerText =
+          endDateFormatted;
+
+        document.getElementById(
+          "durasi-project"
+        ).innerText = `Durasi: ${blog.durasi}`;
+        document.getElementById("deskripsi-project").innerText =
+          blog.description;
+
+        const techContainer = document.getElementById("content-tech-container");
+        blog.technologies.forEach((tech, index) => {
+          const techDiv = document.createElement("div");
+          techDiv.style.display = "flex"; // Menggunakan flexbox untuk menyusun ikon dan nama
+          techDiv.style.alignItems = "center"; // Mengatur vertikal alignment
+
+          const img = document.createElement("img");
+          img.src = tech.icon; // Ambil URL ikon
+          img.alt = tech.name;
+
+          img.style.marginRight = "5px"; // Memberikan jarak antara ikon dan nama
+
+          const span = document.createElement("span");
+          span.innerText = tech.name; // Menampilkan nama teknologi
+
+          techDiv.appendChild(img);
+          techDiv.appendChild(span);
+
+          // Susunan teknologi: 2 di kiri, 2 di kanan
+          if (index % 2 === 0) {
+            techContainer.appendChild(techDiv);
+          } else {
+            techContainer.appendChild(techDiv);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
