@@ -4,42 +4,72 @@
     <title>Blog Saya</title>
     <link rel="stylesheet" href="assets/css/blog.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/nav.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <nav>
-      <ul
-        style="
-          background-color: #fdcedf;
-          list-style-type: none;
-          display: flex;
-          gap: 20px;
-          align-items: center;
-          padding: 10px;
-        "
-      >
+    <nav class="nav-container">
+      <ul class="ul-style">
         <li>
           <img src="assets/img/girl.png" alt="" style="height: 45px" />
         </li>
         <li>
-          <a href="index.html" style="text-decoration: none; color: black"
+          <a
+            href="index.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
             >Home</a
           >
         </li>
         <li>
-          <a href="blog.html" style="text-decoration: none; color: black"
-            >Blog</a
+          <a
+            href="blog.html"
+            class="nav-link"
+            style="
+              text-decoration: none;
+              color: #f38181;
+              white-space: nowrap;
+              font-weight: bold;
+              font-size: large;
+            "
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a
+            href="testimonial.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
+            >Testimonial</a
           >
         </li>
         <li style="display: flex; justify-content: flex-end; width: 85%">
-          <a href="contact.html" class="btn-pink">Contact Me</a>
+          <a href="contact.html" class="btn-pink nav-link">Contact Me</a>
+          <button onclick="hamburgerToggle()" class="hamburger-button">
+            <i class="fa-solid fa-bars" style="color: #f38181"></i>
+          </button>
         </li>
       </ul>
     </nav>
-    <div class="form-container">
-      <form
-        onsubmit="addBlog(event)"
-        style="display: flex; flex-direction: column; gap: 10px"
-      >
+
+    <div id="hamburger-container" class="hamburger-container hide">
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="index.html">Home</a>
+      </h1>
+      <h1 class="hamburger-container-item hamburger-active">
+        <a style="color: white" href="blog.html">My Project</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="testimonial.html">Testimonial</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="contact.html">Contact Me</a>
+      </h1>
+    </div>
+
+    <div class="project-container">
+      <form onsubmit="addBlog(event)" class="form-project-container">
         <h2 style="text-align: center">ADD MY PROJECT</h2>
         <div>
           <label for="input-project">Project Name</label>
@@ -89,8 +119,8 @@
         <label for="upload-img">Upload Image</label>
         <div class="upload-container">
           <!-- Tombol choose -->
-          <label class="custom-file-upload" for="upload-img">
-            <span>Choose File</span>
+          <label class="button-file-upload" for="upload-img">
+            <span>Choose</span>
           </label>
           <!-- Dummy input text dengan icon clip -->
           <div class="file-name-input-container">
@@ -118,7 +148,7 @@
         </div>
 
         <!-- Div untuk menampilkan error -->
-        <div id="error" style="color: red;"></div>
+        <div id="error" style="color: red"></div>
 
         <div style="display: flex; justify-content: flex-end">
           <button
@@ -132,10 +162,11 @@
     </div>
 
     <hr class="line" />
-      <div id="contents" class="blog-list">
-        <!-- dynamic content would be here -->
-         
-    <script src="assets/js/blog.js" defer></script>
+    <div id="contents" class="blog-list">
+      <!-- dynamic content would be here -->
+    </div>
 
+    <script src="assets/js/blog.js" defer></script>
+    <script src="assets/js/nav.js"></script>
   </body>
 </html>

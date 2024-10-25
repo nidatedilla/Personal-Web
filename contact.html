@@ -5,60 +5,78 @@
 
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/nav.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body>
-    <nav>
-      <ul
-        style="
-          background-color: #fdcedf;
-          list-style-type: none;
-          display: flex;
-          gap: 20px;
-          align-items: center;
-          padding: 10px;
-        "
-      >
+    <nav class="nav-container">
+      <ul class="ul-style">
         <li>
           <img src="assets/img/girl.png" alt="" style="height: 45px" />
         </li>
         <li>
-          <a href="index.html" style="text-decoration: none; color: black"
+          <a
+            href="index.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
             >Home</a
           >
         </li>
         <li>
-          <a href="blog.html" style="text-decoration: none; color: black"
-            >Blog</a
+          <a
+            href="blog.html"
+            class="nav-link"
+            style="text-decoration: none; color: black; white-space: nowrap"
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a
+            href="testimonial.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
+            >Testimonial</a
           >
         </li>
         <li style="display: flex; justify-content: flex-end; width: 85%">
-          <a href="contact.html" class="btn-pink">Contact Me</a>
+          <a
+            href="contact.html"
+            class="btn-pink nav-link"
+            style="color: white; font-weight: bold"
+            >Contact Me</a
+          >
+          <button onclick="hamburgerToggle()" class="hamburger-button">
+            <i class="fa-solid fa-bars" style="color: #f38181"></i>
+          </button>
         </li>
       </ul>
     </nav>
 
-    <div
-      style="
-        background-color: #f9f5f6;
-        width: 300px;
-        margin: 1em auto;
-        padding: 30px;
-        box-shadow: 0px 0px 5px gray;
-        border-radius: 8px;
-      "
-    >
+    <div id="hamburger-container" class="hamburger-container hide">
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="index.html">Home</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="blog.html">My Project</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="testimonial.html">Testimonial</a>
+      </h1>
+      <h1 class="hamburger-container-item hamburger-active">
+        <a style="color: white" href="contact.html">Contact Me</a>
+      </h1>
+    </div>
+
+    <div class="contact-conatiner">
       <form
         action=""
         onsubmit="sendToMail(event)"
-        style="display: flex; flex-direction: column; gap: 10px; width: 100%"
+        class="form-contact-container"
       >
         <div>
-          <label
-            for=""
-            style="font-size: 25px; text-align: center; font-weight: 600"
-            >GET IN TOUCH</label
-          >
+          <h1 style="text-align: center; font-size: 25px">GET IN TOUCH</h1>
         </div>
         <div>
           <label for="">Name</label>
@@ -97,5 +115,6 @@
     </div>
 
     <script src="assets/js/contact.js"></script>
+    <script src="assets/js/nav.js"></script>
   </body>
 </html>

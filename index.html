@@ -5,62 +5,83 @@
 
     <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
+    <link rel="stylesheet" href="assets/css/nav.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body>
-    <nav>
-      <ul
-        style="
-          background-color: #fdcedf;
-          list-style-type: none;
-          display: flex;
-          gap: 20px;
-          align-items: center;
-          padding: 10px;
-        "
-      >
+    <nav class="nav-container">
+      <ul class="ul-style">
         <li>
           <img src="assets/img/girl.png" alt="" style="height: 45px" />
         </li>
         <li>
-          <a href="index.html" style="text-decoration: none; color: black"
+          <a
+            href="index.html"
+            class="nav-link"
+            style="
+              text-decoration: none;
+              color: #f38181;
+              font-weight: bold;
+              font-size: large;
+            "
             >Home</a
           >
         </li>
         <li>
-          <a href="blog.html" style="text-decoration: none; color: black">Blog</a>
+          <a
+            href="blog.html"
+            class="nav-link"
+            style="text-decoration: none; color: black; white-space: nowrap"
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a
+            href="testimonial.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
+            >Testimonial</a
+          >
         </li>
         <li style="display: flex; justify-content: flex-end; width: 85%">
-          <a href="contact.html" class="btn-pink">Contact Me</a>
+          <a href="contact.html" class="btn-pink nav-link">Contact Me</a>
+          <button onclick="hamburgerToggle()" class="hamburger-button">
+            <i class="fa-solid fa-bars" style="color: #f38181"></i>
+          </button>
         </li>
       </ul>
     </nav>
 
-    <div
-      style="
-        width: 600px;
-        height: 380px;
-        display: block;
-        margin: 4em auto;
-        box-shadow: 0px 0px 5px black;
-        background-color: #f9f5f6;
-        border-radius: 7px;
-        padding: 25px;
-        padding-left: 50px;
-        padding-right: 50px;
-      "
-    >
-      <div style="float: left; width: 350px">
+    <div id="hamburger-container" class="hamburger-container hide">
+      <h1 class="hamburger-container-item hamburger-active">
+        <a style="color: white" href="index.html">Home</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="blog.html">My Project</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="testimonial.html">Testimonial</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="contact.html">Contact Me</a>
+      </h1>
+    </div>
+
+    <div class="biodata-container">
+      <div class="deskripsi-container">
         <div style="padding-bottom: 20px">
-          <h1 style="text-align: center">Hallo, Selamat Datang</h1>
+          <h1 style="text-align: left">Hallo, Selamat Datang</h1>
         </div>
 
         <div style="padding-bottom: 30px">
           <p style="text-align: justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-            incidunt minus temporibus quaerat atque, sint, ullam libero
-            inventore nesciunt eos nam nisi doloribus fuga dolorem reiciendis,
-            praesentium quo doloremque magni?
+            Saya adalah lulusan S1 tahun 2023, berdomisili di Tangerang. Saat
+            ini, saya sedang menjalani pelatihan bootcamp di Dumbways untuk
+            meningkatkan kemampuan saya di bidang teknologi dan pengembangan
+            web. Saya memiliki minat besar dalam pengembangan software dan
+            selalu berusaha untuk terus belajar dan berkembang di bidang ini.
           </p>
         </div>
 
@@ -80,7 +101,7 @@
           </a>
         </div>
 
-        <div class="social-icon" style="padding-top: 70px; text-align: center">
+        <div class="social-icon">
           <a href="" target="_blank" style="padding-left: 0">
             <img src="assets/icon/linkedin.png" alt="LinkedIn" />
           </a>
@@ -96,27 +117,8 @@
         </div>
       </div>
 
-      <div
-        style="
-          float: right;
-          background-color: #ffffff;
-          width: 200px;
-          padding-bottom: 20px;
-          margin: 20px 0;
-          box-shadow: 0px 0px 10px black;
-          border-radius: 10px;
-        "
-      >
-        <img
-          src="assets/img/Nida Tedilla Manuar.jpg"
-          style="
-            width: 100%;
-            display: block;
-            margin: auto;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-          "
-        />
+      <div class="image-container">
+        <img src="assets/img/Nida Tedilla Manuar.jpg" />
         <br />
         <h2 style="text-align: center; font-size: medium">
           Nida Tedilla Manuar
@@ -124,5 +126,7 @@
         <p style="text-align: center; font-size: small">Fullstack Developer</p>
       </div>
     </div>
+
+    <script src="assets/js/nav.js"></script>
   </body>
 </html>

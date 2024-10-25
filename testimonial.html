@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testimonial</title>
+
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/nav.css" />
+    <link rel="stylesheet" href="assets/css/testimonials.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <nav class="nav-container">
+      <ul class="ul-style">
+        <li>
+          <img src="assets/img/girl.png" alt="" style="height: 45px" />
+        </li>
+        <li>
+          <a
+            href="index.html"
+            class="nav-link"
+            style="text-decoration: none; color: black"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="blog.html"
+            class="nav-link"
+            style="text-decoration: none; color: black; white-space: nowrap"
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a
+            href="testimonial.html"
+            class="nav-link"
+            style="
+              text-decoration: none;
+              color: #f38181;
+              font-weight: bold;
+              font-size: large;
+            "
+            >Testimonial</a
+          >
+        </li>
+        <li style="display: flex; justify-content: flex-end; width: 85%">
+          <a href="contact.html" class="btn-pink nav-link">Contact Me</a>
+          <button onclick="hamburgerToggle()" class="hamburger-button">
+            <i class="fa-solid fa-bars" style="color: #f38181"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="hamburger-container" class="hamburger-container hide">
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="index.html">Home</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="blog.html">My Project</a>
+      </h1>
+      <h1 class="hamburger-container-item hamburger-active">
+        <a style="color: white" href="testimonial.html">Testimonial</a>
+      </h1>
+      <h1 class="hamburger-container-item">
+        <a style="color: black" href="contact.html">Contact Me</a>
+      </h1>
+    </div>
+
+    <div class="testimonials-container">
+      <div class="judul-container">
+        <h1>My Testimonials</h1>
+        <p>Rating By Star</p>
+      </div>
+      <div class="star-container">
+        <button onclick="getAllTesti(); setActiveButton(this)">All</button>
+        <button onclick="getTestiByStar(5, this)">
+          <i class="fa fa-star" aria-hidden="true"></i> 5
+        </button>
+        <button onclick="getTestiByStar(4, this)">
+          <i class="fa fa-star" aria-hidden="true"></i> 4
+        </button>
+        <button onclick="getTestiByStar(3, this)">
+          <i class="fa fa-star" aria-hidden="true"></i> 3
+        </button>
+        <button onclick="getTestiByStar(2, this)">
+          <i class="fa fa-star" aria-hidden="true"></i> 2
+        </button>
+        <button onclick="getTestiByStar(1, this)">
+          <i class="fa fa-star" aria-hidden="true"></i> 1
+        </button>
+      </div>
+      <section class="list-testi-container" id="testimonials"></section>
+    </div>
+
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/testimonial.js"></script>
+  </body>
+</html>
