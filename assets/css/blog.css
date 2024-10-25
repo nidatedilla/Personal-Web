@@ -1,117 +1,21 @@
 .project-container {
-  padding: 30px;
-  border-radius: 10px;
   box-shadow: 0 4px 10px grey;
-  width: 300px;
-  margin: 1em auto;
+  max-width: 400px;
   background-color: #f9f5f6;
-}
-.form-project-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-input {
-  height: 25px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 textarea {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  box-shadow: 0px 0px 5px gray;
+}
+input {
+  box-shadow: 0px 0px 5px gray;
+}
+.clip{
+  width: 45px;
 }
 
-.project-container label {
-  display: block;
-}
 
-.date-container {
-  display: flex;
-  justify-content: space-between;
-}
-.date-container input[type="date"] {
-  width: 100%;
-  height: 30px;
-  border: 1px solid #ccc;
-}
-
-.technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.technologies div {
-  width: 49%; /* Lebar tiap checkbox diatur agar pas dua kolom */
-  display: flex;
-  align-items: center; /* Agar checkbox dan label sejajar secara vertikal */
-}
-
-.technologies label {
-  font-size: 14px;
-  color: #333;
-}
-
-.technologies input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-.upload-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
-}
-
-.file-name-input-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  position: relative;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding-right: 40px; /* Untuk ruang icon clip */
-}
-
-.file-name-input {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
-  padding-right: 40px; /* Untuk ruang icon clip */
-}
-.icon-clip {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: auto;
-}
-input[type="file"] {
-  display: none;
-}
-.button-file-upload {
-  display: flex;
-  width: 90px;
-  padding: 7px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fddede;
-  cursor: pointer;
-  color: #333;
-  text-align: center;
-  font-size: 14px;
-}
-.button-file-upload:hover {
-  background-color: #e0e6ed;
-}
-
-.blog {
+/* .blog {
   width: 400px;
   border-radius: 8px;
   overflow: hidden;
@@ -229,38 +133,4 @@ input[type="file"] {
 }
 .btn-container button {
   width: 100%;
-}
-
-@media only screen and (max-width:700px) {
-  .blog-detail{
-    width: auto;
-    margin: 1em 1.5em;
-    overflow: hidden;
-  }
-  .content-img-container{
-    flex-direction: column;
-    margin-right: 20px;
-  }
-  .detail-img-projet{
-    margin-left: 0;
-    margin-right: 0;
-    height: auto;
-  }
-  .content-duration-container img{
-    margin-left: 0;
-  }
-}
-
-@media only screen and (max-width: 410px) {
-  .project-container {
-    width: auto;
-    margin: 1em 1.5em;
-  }
-}
-
-@media only screen and (max-width: 370px) {
-  .date-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
+} */

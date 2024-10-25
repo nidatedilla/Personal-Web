@@ -1,0 +1,25 @@
+{
+  "name": "project-dumbways",
+  "version": "1.0.0",
+  "description": "this is my first personal web with js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nidatedilla/Web-Personal.git"
+  },
+  "keywords": [
+    "personal_web"
+  ],
+  "author": "Nida Tedilla Manuar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nidatedilla/Web-Personal/issues"
+  },
+  "homepage": "https://github.com/nidatedilla/Web-Personal#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

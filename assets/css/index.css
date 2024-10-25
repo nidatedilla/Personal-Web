@@ -1,71 +1,27 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
 
-* {
-  margin: 0;
-}
-
 .biodata-container {
-  width: 600px;
+  max-width: 600px;
   height: 380px;
-  display: flex;
-  margin: 1em auto;
   box-shadow: 0px 0px 5px black;
-  background-color: #f9f5f6;
-  border-radius: 7px;
-  padding: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.deskripsi-container {
-  padding-right: 25px;
-  width: 370px;
+  background-color: #f9f5f6 !important;
 }
 .image-container {
-  background-color: #ffffff;
-  width: 200px;
-  padding-bottom: 20px;
-  margin: 20px auto;
   box-shadow: 0px 0px 10px black;
-  border-radius: 10px;
 }
-.image-container img {
-  width: 100%;
-  display: block;
-  margin: auto;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-}
-.social-icon {
-  padding-top: 45px;
-  text-align: center;
+.custom-link{
+  color: black !important;
+  text-decoration: none !important;
 }
 .social-icon img {
   width: 35px;
   height: auto;
 }
-.social-icon a {
-  text-decoration: none;
-  padding-left: 10px;
+.tech-icon img{
+  width: 35px;
+  height: auto;
 }
-
-.btn-pink {
-  background-color: #f38181;
-  color: black;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-@media only screen and (max-width: 750px) {
-  .biodata-container {
-    flex-direction: column;
-    width: auto;
-    height: auto;
-    margin: 1em 1.5em;
-  }
-  .deskripsi-container {
-    width: auto;
-    padding: 0;
-  }
+.btn-pink  {
+  background-color: #f38181 !important; 
+  color: black !important;
 }
