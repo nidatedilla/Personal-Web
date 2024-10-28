@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/nidatedilla/Web-Personal#readme",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "hbs": "^4.2.0"
   }
 }

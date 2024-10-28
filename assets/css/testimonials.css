@@ -32,7 +32,7 @@
   color: gold;
 }
 
-.star-container button.active {
+.star-container button.click {
   background-color: #f38181;
   color: white;
   border: 1px solid #f38181;

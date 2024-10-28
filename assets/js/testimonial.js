@@ -74,8 +74,8 @@ getAllTesti();
 function setActiveButton(button) {
   // Menghapus class "active" dari semua tombol
   const buttons = document.querySelectorAll(".star-container button");
-  buttons.forEach((btn) => btn.classList.remove("active"));
+  buttons.forEach((btn) => btn.classList.remove("click"));
 
   // Menambahkan class "active" ke tombol yang diklik
-  button.classList.add("active");
+  button.classList.add("click");
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog Saya</title>
+    <title>Project Saya</title>
     <link rel="stylesheet" href="assets/css/blog.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="stylesheet" href="assets/css/nav.css" />
@@ -41,28 +41,33 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="index.html"
+                <a class="nav-link" style="color: black" href="/"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" style="color: black" href="blog.html"
+                <a class="nav-link active" style="color: black" href="/project"
                   >Add Project</a
                 >
               </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color: black" href="/testimonial"
+                  >Testimonials</a
+                >
+              </li>
             </ul>
-            <a href="contact.html" class="btn btn-pink">Contact Me</a>
+            <a href="/contact" class="btn btn-pink">Contact Me</a>
           </div>
         </div>
       </div>
     </nav>
 
     <div class="project-container m-auto mt-3 mb-3 px-4 py-4 rounded">
-      <form action="" onsubmit="addBlog(event)">
+      <form method="post" action="/project">
         <h2 class="text-center">ADD MY PROJECT</h2>
         <div class="mb-3">
           <label for="input-project" class="form-label mb-0">Name</label>
-          <input type="text" class="form-control" id="input-project" />
+          <input type="text" class="form-control" id="input-project" name="nameProject" />
         </div>
         <div class="row mb-3">
           <div class="col">
@@ -84,7 +89,7 @@
         </div>
         <div class="mb-3">
           <label for="input-desc" class="form-label mb-0">Description</label>
-          <textarea class="form-control" id="input-desc" rows="3"></textarea>
+          <textarea class="form-control" id="input-desc" name="description" rows="3"></textarea>
         </div>
         <label class="form-label mb-0">Technologies</label>
         <div class="mb-3 d-flex justify-content-start gap-4">
@@ -142,7 +147,7 @@
         </div>
         <div id="error" style="color: red"></div>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-pink">Submit</button>
+          <button type="submit" class="btn btn-pink">Submit</button>
         </div>
       </form>
     </div>
@@ -157,6 +162,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="assets/js/blog.js" defer></script>
+    {{!-- <script src="assets/js/blog.js" defer></script> --}}
   </body>
 </html>
