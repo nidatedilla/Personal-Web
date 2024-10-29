@@ -1,9 +1,9 @@
 <html>
   <head>
-    <title>Add Project</title>
-    <link rel="stylesheet" href="assets/css/project.css" />
-    <link rel="stylesheet" href="assets/css/index.css" />
-    <link rel="stylesheet" href="assets/css/nav.css" />
+    <title>Edit My Project</title>
+    <link rel="stylesheet" href="/assets/css/project.css" />
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/nav.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg ul-style">
       <div class="container-fluid">
         <img
-          src="assets/img/girl.png"
+          src="/assets/img/girl.png"
           alt=""
           style="height: 45px; padding-right: 15px"
         />
@@ -43,11 +43,8 @@
                 <a class="nav-link" style="color: black" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  style="color: black"
-                  href="/project"
-                >Add Project</a>
+                <a class="nav-link" style="color: black" href="/project">Add
+                  Project</a>
               </li>
               <li class="nav-item">
                 <a
@@ -64,8 +61,8 @@
     </nav>
 
     <div class="project-container m-auto mt-3 mb-3 px-4 py-4 rounded">
-      <form method="post" action="/project">
-        <h2 class="text-center">ADD MY PROJECT</h2>
+      <form method="post" action="/edit-project/{{index}}">
+        <h2 class="text-center">EDIT POST PROJECT</h2>
         <div class="mb-3">
           <label for="input-project" class="form-label mb-0">Name</label>
           <input
@@ -73,6 +70,7 @@
             class="form-control"
             id="input-project"
             name="nameProject"
+            value="{{project.nameProject}}"
           />
         </div>
         <div class="row mb-3">
@@ -83,6 +81,7 @@
               class="form-control"
               id="start-date"
               name="startDate"
+              value="{{project.startDate}}"
             />
           </div>
           <div class="col">
@@ -92,6 +91,7 @@
               class="form-control"
               id="end-date"
               name="endDate"
+              value="{{project.endDate}}"
             />
           </div>
         </div>
@@ -102,7 +102,7 @@
             id="input-desc"
             name="description"
             rows="3"
-          ></textarea>
+          >{{project.description}}</textarea>
         </div>
         <label class="form-label mb-0">Technologies</label>
         <div class="mb-3 d-flex justify-content-start gap-4">
@@ -111,9 +111,10 @@
               <input
                 class="form-check-input"
                 type="checkbox"
+                name="technologies"
                 value="Node JS"
                 id="node-js"
-                name="technologies"
+                {{#if (includes project.technologies "Node JS")}}checked{{/if}}
               />
               <label class="form-check-label" for="node-js">
                 Node JS
@@ -123,9 +124,10 @@
               <input
                 class="form-check-input"
                 type="checkbox"
+                name="technologies"
                 value="React JS"
                 id="react-js"
-                name="technologies"
+                {{#if (includes project.technologies "React JS")}}checked{{/if}}
               />
               <label class="form-check-label" for="react-js">
                 React JS
@@ -137,9 +139,10 @@
               <input
                 class="form-check-input"
                 type="checkbox"
+                name="technologies"
                 value="Typescript"
                 id="typescript"
-                name="technologies"
+                {{#if (includes project.technologies "Typescript")}}checked{{/if}}
               />
               <label class="form-check-label" for="typescript">
                 Typescript
@@ -149,9 +152,10 @@
               <input
                 class="form-check-input"
                 type="checkbox"
+                name="technologies"
                 value="Next JS"
                 id="next-js"
-                name="technologies"
+                {{#if (includes project.technologies "Next JS")}}checked{{/if}}
               />
               <label class="form-check-label" for="next-js"> Next JS </label>
             </div>
@@ -162,64 +166,17 @@
           <input type="file" class="form-control" id="upload-img" />
           <img
             class="input-group-text clip"
-            src="assets/icon/paper-clip.png"
+            src="/assets/icon/paper-clip.png"
             alt=""
           />
         </div>
         <div id="error" style="color: red"></div>
         <div class="d-flex justify-content-end">
-          <button type="submit" class="btn btn-pink">Submit</button>
+          <button type="submit" class="btn btn-pink">Edit Project</button>
         </div>
       </form>
     </div>
 
-    <div class="bg-danger-subtle px-3 py-3 mt-0">
-      <div class="py-2">
-        <h2 class="text-center">MY PROJECT</h2>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each projects}}
-          <div class="col">
-            <div class="card mb-3 pb-3">
-              <img src="{{image}}" class="card-img-top" alt="" />
-              <div class="card-body">
-                <a href="/project-detail"><h5 class="card-title">
-                    {{nameProject}}
-                  </h5></a>
-                <p>Durasi: {{get-durasi startDate endDate}}</p>
-                <p class="card-text">
-                  {{description}}
-                </p>
-              </div>
-              <div class="d-flex tech-icon gap-3 ms-3">
-                {{#each technologies}}
-                  <img
-                    src="{{get-tech-icon this}}"
-                    alt="{{this}}"
-                    class="tech-icon"
-                  />
-                {{/each}}
-              </div>
-              <div class="mt-4 mx-3 d-flex justify-content-center gap-2">
-                <a
-                  href="/edit-project/{{@index}}"
-                  class="btn btn-pink flex-fill btn-custom"
-                >Edit</a>
-                <form
-                  class="flex-fill btn-custom"
-                  method="post"
-                  action="/delete-project/{{@index}}"
-                >
-                  <button
-                    class="btn btn-pink flex-fill btn-custom"
-                  >Delete</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        {{/each}}
-      </div>
-    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
