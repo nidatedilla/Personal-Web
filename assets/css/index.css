@@ -17,6 +17,10 @@
   width: 35px;
   height: auto;
 }
+.tech-icon img {
+  width: 35px;
+  height: auto;
+}
 .btn-pink  {
   background-color: #f38181 !important; 
   color: black !important;

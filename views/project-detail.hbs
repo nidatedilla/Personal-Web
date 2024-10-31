@@ -1,60 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Detail</title>
-
-    <link rel="stylesheet" href="assets/css/project.css" />
-    <link rel="stylesheet" href="assets/css/index.css" />
-    <link rel="stylesheet" href="assets/css/nav.css" />
+    <title>{{project.nameProject}} - Detail</title>
+    <link rel="stylesheet" href="/assets/css/project.css" />
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/nav.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
+    
     <nav class="navbar navbar-expand-lg ul-style">
       <div class="container-fluid">
-        <img
-          src="assets/img/girl.png"
-          alt=""
-          style="height: 45px; padding-right: 15px"
-        />
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar"
-          aria-label="Toggle navigation"
-        >
+        <img src="/assets/img/girl.png" alt="" style="height: 45px; padding-right: 15px" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="offcanvas offcanvas-end custom-offcanvas"
-          tabindex="-1"
-          id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel"
-        >
+        <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasNavbar">
           <div class="offcanvas-body">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="/"
-                  >Home</a
-                >
+                <a class="nav-link" style="color: black" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="/project"
-                  >Add Project</a
-                >
+                <a class="nav-link" style="color: black" href="/project">Add Project</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="/testimonial"
-                  >Testimonials</a
-                >
+                <a class="nav-link" style="color: black" href="/testimonial">Testimonials</a>
               </li>
             </ul>
             <a href="/contact" class="btn btn-pink">Contact Me</a>
@@ -63,128 +36,63 @@
       </div>
     </nav>
 
-    <div class="blog-detail">
-      <h1 id="judul-project" style="text-align: center"></h1>
-      <div class="content-img-container">
-        <div class="detail-img-projet">
-          <img src="" id="gambar-project" alt="" />
+    <div class="project-detail-container container">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <h1 class="text-center">{{project.nameProject}}</h1>
         </div>
-        <div>
-          <div class="content-duration-container">
-            <p style="font-size: 20px">Duration</p>
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-                align-items: center;
-                width: 100%;
-              "
-            >
-              <img src="assets/icon/schedule.png" alt="" />
-              <p>
-                <span id="start-date-project"></span> -
-                <span id="end-date-project"></span>
-              </p>
-            </div>
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-                align-items: center;
-                width: 100%;
-              "
-            >
-              <img src="assets/icon/clock.png" alt="" />
-              <p id="durasi-project"></p>
+
+        <div class="col-12 col-lg-8 mb-4">
+          <div class="card">
+            <img src="{{project.image}}" class="card-img-top project-detail-image" alt="{{project.nameProject}}" />
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Duration</h5>
+              <div class="mb-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="/assets/icon/schedule.png" alt="" class="duration-icon me-3" />
+                  <span>{{formatDate project.startDate}} - {{formatDate project.endDate}}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <img src="/assets/icon/clock.png" alt="" class="duration-icon me-3" />
+                  <span>{{get-durasi project.startDate project.endDate}}</span>
+                </div>
+              </div>
+
+              <h5 class="card-title mb-3">Technologies</h5>
+              <div class="row g-3">
+                {{#each project.technologies}}
+                  <div class="col-6">
+                    <div class="d-flex align-items-center">
+                      <img src="{{get-tech-icon this}}" alt="{{this}}" class="tech-icon me-2"/>
+                      <span>{{this}}</span>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
             </div>
           </div>
+        </div>
 
-          <div>
-            <p style="font-size: 20px">Technologies</p>
-            <div
-              class="content-tech-container"
-              id="content-tech-container"
-            ></div>
+        <div class="col-12 mt-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Project Description</h5>
+              <p class="card-text project-description">{{project.description}}</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div style="padding-left: 30px; padding-right: 30px">
-        <p
-          style="text-align: justify; font-size: 18px"
-          id="deskripsi-project"
-        ></p>
+      <div class="text-center mt-4">
+        <a href="/project" class="btn btn-pink">Back to Projects</a>
       </div>
     </div>
 
-    <script>
-      // Mengambil data dari Local Storage
-      const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-
-      // Mendapatkan parameter dari URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const index = urlParams.get("index");
-
-      function formatDate(date) {
-        const day = String(date.getDate()).padStart(2, "0"); // Mengambil hari dan menambahkan 0 di depan jika perlu
-        const month = String(date.getMonth() + 1).padStart(2, "0"); // Mengambil bulan (0-11) dan menambahkan 1, lalu menambahkan 0 di depan jika perlu
-        const year = date.getFullYear(); // Mengambil tahun
-        return `${day}/${month}/${year}`; // Mengembalikan format dd mm yyyy
-      }
-
-      if (index !== null && index < blogs.length) {
-        const blog = blogs[index];
-        document.getElementById("judul-project").innerText = blog.project;
-        document.getElementById("gambar-project").src = blog.image;
-
-        // Format dan tampilkan start date dan end date
-        const startDateFormatted = formatDate(new Date(blog.startDate));
-        const endDateFormatted = formatDate(new Date(blog.endDate));
-
-        document.getElementById("start-date-project").innerText =
-          startDateFormatted;
-        document.getElementById("end-date-project").innerText =
-          endDateFormatted;
-
-        document.getElementById("durasi-project").innerText = `${blog.durasi}`;
-        document.getElementById("deskripsi-project").innerText =
-          blog.description;
-
-        const techContainer = document.getElementById("content-tech-container");
-        blog.technologies.forEach((tech, index) => {
-          const techDiv = document.createElement("div");
-          techDiv.style.display = "flex"; // Menggunakan flexbox untuk menyusun ikon dan nama
-          techDiv.style.alignItems = "center"; // Mengatur vertikal alignment
-
-          const img = document.createElement("img");
-          img.src = tech.icon; // Ambil URL ikon
-          img.alt = tech.name;
-
-          img.style.marginRight = "5px"; // Memberikan jarak antara ikon dan nama
-
-          const span = document.createElement("span");
-          span.innerText = tech.name; // Menampilkan nama teknologi
-
-          techDiv.appendChild(img);
-          techDiv.appendChild(span);
-
-          // Susunan teknologi: 2 di kiri, 2 di kanan
-          if (index % 2 === 0) {
-            techContainer.appendChild(techDiv);
-          } else {
-            techContainer.appendChild(techDiv);
-          }
-        });
-      }
-    </script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="assets/js/nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

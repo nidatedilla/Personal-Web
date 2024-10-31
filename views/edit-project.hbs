@@ -61,7 +61,7 @@
     </nav>
 
     <div class="project-container m-auto mt-3 mb-3 px-4 py-4 rounded">
-      <form method="post" action="/edit-project/{{index}}">
+      <form method="post" action="/edit-project/{{project.id}}" onsubmit="return validateForm()">
         <h2 class="text-center">EDIT POST PROJECT</h2>
         <div class="mb-3">
           <label for="input-project" class="form-label mb-0">Name</label>
@@ -182,5 +182,8 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      {{{validateForm}}}
+    </script>
   </body>
 </html>

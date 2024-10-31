@@ -21,6 +21,12 @@
   "homepage": "https://github.com/nidatedilla/Web-Personal#readme",
   "dependencies": {
     "express": "^4.21.1",
-    "hbs": "^4.2.0"
+    "hbs": "^4.2.0",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
   }
 }
