@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testimonial</title>
+
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/nav.css" />
+    <link rel="stylesheet" href="/assets/css/testimonials.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg ul-style">
+      <div class="container-fluid">
+        <img
+          src="/assets/img/girl.png"
+          alt=""
+          style="height: 45px; padding-right: 15px"
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end custom-offcanvas"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-body">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+              <li class="nav-item">
+                <a class="nav-link" style="color: black" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color: black" href="/project">Add
+                  Project</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  style="color: black"
+                  href="/testimonial"
+                >Testimonials</a>
+              </li>
+            </ul>
+            <a href="/contact" class="btn btn-pink">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <h2 class="card-title">My Testimonials</h2>
+            <p class="text-muted">Rating By Star</p>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2 flex-wrap mb-4">
+            <button class="btn btn-outline-primary" onclick="getAllTesti(this)">
+              All
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              onclick="getTestiByStar(5, this)"
+            >
+              <i class="fas fa-star text-warning"></i>
+              5
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              onclick="getTestiByStar(4, this)"
+            >
+              <i class="fas fa-star text-warning"></i>
+              4
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              onclick="getTestiByStar(3, this)"
+            >
+              <i class="fas fa-star text-warning"></i>
+              3
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              onclick="getTestiByStar(2, this)"
+            >
+              <i class="fas fa-star text-warning"></i>
+              2
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              onclick="getTestiByStar(1, this)"
+            >
+              <i class="fas fa-star text-warning"></i>
+              1
+            </button>
+          </div>
+
+          <div class="row g-4 justify-content-center" id="testimonials">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const testimonialData = [
+        {
+          author: "Blackpink",
+          content: "MasyaAllah Tabarakallah",
+          image: "https://i.pinimg.com/736x/06/93/22/06932282d555bff6c80e40dea2b74ac9.jpg",
+          rating: 5,
+        },
+        {
+          author: "Jisoo",
+          content: "Keren bangeet, ampe keselek!!",
+          image: "https://pbs.twimg.com/media/DSjMkl9U8AAp77O.jpg",
+          rating: 4,
+        },
+        {
+          author: "Rose",
+          content: "Waaww amazing, mantap bangeet!!",
+          image: "https://i.pinimg.com/736x/c0/8a/e6/c08ae6866e010451caccf0ae3d801ae1.jpg",
+          rating: 3,
+        },
+        {
+          author: "Lisa",
+          content: "Gini amat",
+          image: "https://i.pinimg.com/236x/28/d0/9c/28d09cf4e80f471fda6b4c7e45ba130b.jpg",
+          rating: 2,
+        },
+        {
+          author: "Jennie",
+          content: "Ewwh",
+          image: "https://stickerly.pstatic.net/sticker_pack/T0AdlPW2iS4ZPDncPPwYw/2RQL08/3/2c4e2a4e-a2bc-41a8-a9a7-cea2e44d3675.png",
+          rating: 1,
+        },
+      ];
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/testimonial.js"></script>
+  </body>
+</html>

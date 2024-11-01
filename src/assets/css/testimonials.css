@@ -1,0 +1,56 @@
+.btn-outline-primary {
+  border-color: #F38181 !important;
+  color: #F38181 !important;
+  background-color: white !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+  background-color: #F38181 !important;
+  border-color: #F38181 !important;
+  color: white !important;
+}
+
+.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(243, 129, 129, 0.25) !important;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  background-color: #f9f5f6 !important;
+}
+
+.testimonial-card {
+  transition: transform 0.3s ease;
+  border: none;
+  border-radius: 15px !important;
+  background-color: white !important;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.text-warning {
+  color: #ffd700 !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .testimonial-card {
+    margin-bottom: 1rem;
+  }
+}
