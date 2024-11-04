@@ -1,22 +1,40 @@
 const express = require("express");
 const app = express();
+const port = 3000;
 const path = require("path");
 const hbs = require("hbs");
 require("./src/libs/hbs-helper");
 const config = require("./src/config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
 const sequelize = new Sequelize(config.development);
-const port = 3000;
+const bcrypt = require("bcrypt");
+const session = require("express-session");
+const flash = require("express-flash");
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./src/views"));
 
 app.use("/assets", express.static(path.join(__dirname, "./src/assets")));
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  name: "my-session",
+  secret: "secret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}));
+app.use(flash());
 
 app.get("/", home);
 app.get("/testimonial", testimonial);
 app.get("/contact", contact);
+app.get("/login", login);
+app.post("/login", loginPost);
+app.get("/register", register);
+app.post("/register", registerPost);
 
 //PROJECT
 app.get("/project", project);
@@ -25,11 +43,82 @@ app.post("/delete-project/:id", projectDelete);
 app.get("/edit-project/:id", editProject);
 app.post("/edit-project/:id", editProjectPost);
 app.get("/project-detail/:id", projectDetail);
-
-const projects = [];
+app.post("/logout", logoutPost);
 
 function home(req, res) {
-  res.render("index");
+  const user = req.session.user;
+  res.render("index", { user });
+}
+
+function login(req, res) {
+  res.render("login");
+}
+
+async function loginPost(req, res){
+  const { email, password } = req.body;
+
+  const query = `SELECT * FROM users WHERE email = '${email}'`;
+  const user = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+  if (!user.length) {
+    req.flash("error", "Invalid email or password");
+    return res.redirect("/login");
+  }
+
+  const isVerifiedPassword = await bcrypt.compare(password, user[0].password);
+
+  if (!isVerifiedPassword) {
+    req.flash("error", "Invalid email or password");
+    return res.redirect("/login");
+  }
+
+  req.flash("success", "Login success");
+  req.session.user = user[0];
+  res.redirect("/");
+}
+
+function register(req, res) {
+  res.render("register");
+}
+
+async function registerPost(req, res) {
+  try {
+    const { name, email, password } = req.body;
+
+    const checkEmail = await sequelize.query(
+      `SELECT * FROM users WHERE email = '${email}'`,
+      { type: QueryTypes.SELECT }
+    );
+
+    if (checkEmail.length > 0) {
+      req.flash('error', 'Email already registered');
+      return res.redirect('/register');
+    }
+
+    const salt = 10;
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const query = `INSERT INTO users(name, email, password) VALUES ('${name}', '${email}', '${hashedPassword}')`;
+    await sequelize.query(query, { type: QueryTypes.INSERT });
+
+    req.flash('success', 'Registration successful! Please login.');
+    res.redirect('/login');
+
+  } catch (error) {
+    console.error(error);
+    req.flash('error', 'Registration failed');
+    res.redirect('/register');
+  }
+}
+
+function logoutPost(req, res) {
+  req.session.destroy((err) => {
+    if (err) return console.error("Logout gagal!");
+
+    console.log("Logout berhasil!");
+
+    res.redirect("/");
+  });
 }
 
 async function project(req, res) {

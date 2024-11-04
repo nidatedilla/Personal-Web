@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Personal Web</title>
@@ -43,22 +42,46 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/"
-                  >Home</a
-                >
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="/project"
-                  >Add Project</a
-                >
+                <a class="nav-link" style="color: black" href="/project">Add
+                  Project</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: black" href="/testimonial"
-                  >Testimonials</a
-                >
+                <a
+                  class="nav-link"
+                  style="color: black"
+                  href="/testimonial"
+                >Testimonials</a>
               </li>
             </ul>
-            <a href="/contact" class="btn btn-pink">Contact Me</a>
+            <div class="d-flex gap-2 align-items-center">
+              {{#if user}}
+                <div class="user-welcome">
+                  <span class="welcome-text">Welcome,</span>
+                  <span class="user-name">{{user.name}}</span>
+                </div>
+                <form action="/logout" method="post">
+                  <button type="submit" class="btn btn-auth">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                  </button>
+                </form>
+              {{else}}
+                <div class="auth-buttons">
+                  <a href="/login" class="btn btn-auth">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                  </a>
+                  <a href="/register" class="btn btn-auth">
+                    <i class="fas fa-user-plus"></i>
+                    Register
+                  </a>
+                </div>
+              {{/if}}
+              <a href="/contact" class="btn btn-pink">Contact Me</a>
+            </div>
           </div>
         </div>
       </div>
@@ -82,8 +105,7 @@
               href="/contact"
               class="btn-pink px-2 py-2 text-decoration-none rounded"
             >
-              Contact</a
-            >
+              Contact</a>
             <a
               class="icon-link icon-link-hover custom-link"
               style="--bs-icon-link-transform: translate3d(0, -0.125rem, 0)"

@@ -4,7 +4,8 @@
   "description": "this is my first personal web with js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/nidatedilla/Web-Personal#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "express": "^4.21.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.1",
     "hbs": "^4.2.0",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
