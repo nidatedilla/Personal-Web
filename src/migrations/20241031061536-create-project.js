@@ -1,53 +1,61 @@
-'use strict';
-   
+"use strict";
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('projects', {
+    await queryInterface.createTable("projects", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING(100),
-        allowNull: false
+        allowNull: false,
       },
       start_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       end_date: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
       },
       technologies: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: true,
-        defaultValue: []
+        defaultValue: [],
       },
       image: {
         type: Sequelize.STRING(255),
-        allowNull: true
+        allowNull: true,
+      },
+      author_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      },
     });
   },
-  
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('projects');
-  }
+    await queryInterface.dropTable("projects");
+  },
 };

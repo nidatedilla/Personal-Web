@@ -61,7 +61,12 @@
     </nav>
 
     <div class="project-container m-auto mt-3 mb-3 px-4 py-4 rounded">
-      <form method="post" action="/edit-project/{{project.id}}" onsubmit="return validateForm()">
+      <form 
+        method="post" 
+        action="/edit-project/{{project.id}}" 
+        onsubmit="return validateForm()"
+        enctype="multipart/form-data"
+      >
         <h2 class="text-center">EDIT POST PROJECT</h2>
         <div class="mb-3">
           <label for="input-project" class="form-label mb-0">Name</label>
@@ -161,14 +166,44 @@
             </div>
           </div>
         </div>
-        <label for="upload-img" class="form-label mb-0">Upload Image</label>
-        <div class="input-group mb-3">
-          <input type="file" class="form-control" id="upload-img" />
-          <img
-            class="input-group-text clip"
-            src="/assets/icon/paper-clip.png"
-            alt=""
-          />
+        <div class="mb-3">
+          <label for="upload-img" class="form-label mb-0">Upload Image</label>
+          <div class="input-group">
+            <input
+              type="file"
+              class="form-control"
+              id="upload-img"
+              name="image"
+              accept="image/*"
+              onchange="previewImage(event)"
+            />
+            <img
+              class="input-group-text clip"
+              src="/assets/icon/paper-clip.png"
+              alt=""
+            />
+          </div>
+          <div class="mt-3" style="max-width: 300px">
+            <div id="preview-container"
+            {{#if project.image}}
+              style="display: block;"
+            {{else}}
+              style="display: none;"
+            {{/if}}>
+              <img
+                id="preview"
+                src="{{#if project.image}}/{{project.image}}{{else}}#{{/if}}"
+                alt="Preview"
+                class="img-thumbnail w-100"
+                style="object-fit: cover;"
+              />
+              <button
+                type="button"
+                class="btn btn-danger btn-sm mt-2"
+                onclick="removeImage()"
+              >Remove Image</button>
+            </div>
+          </div>
         </div>
         <div id="error" style="color: red"></div>
         <div class="d-flex justify-content-end">
@@ -184,6 +219,33 @@
     ></script>
     <script>
       {{{validateForm}}}
+
+      function previewImage(event) {
+        const preview = document.getElementById('preview');
+        const previewContainer = document.getElementById('preview-container');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = function() {
+          preview.src = reader.result;
+          previewContainer.style.display = 'block';
+        }
+
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          removeImage();
+        }
+      }
+
+      function removeImage() {
+        const preview = document.getElementById('preview');
+        const previewContainer = document.getElementById('preview-container');
+        const fileInput = document.getElementById('upload-img');
+        preview.src = '#';
+        previewContainer.style.display = 'none';
+        fileInput.value = '';
+      }
     </script>
   </body>
 </html>

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/nav.css" />
+    <link rel="stylesheet" href="assets/css/project.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -170,6 +171,42 @@
             Fullstack Developer
           </p>
         </div>
+      </div>
+    </div>
+
+    <div class="bg-danger-subtle px-3 py-3 mt-3">
+      <div class="py-2">
+        <h2 class="text-center">MY PROJECT</h2>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+        {{#each projects}}
+          <div class="col">
+            <div class="card mb-3 pb-3">
+              <div class="card-img-container">
+                <img src="{{image}}" class="card-img-top project-list-image" alt="" />
+              </div>
+              <div class="card-body">
+                <a href="/project-detail/{{id}}" class="project-title-link">
+                  <h5 class="card-title">{{nameProject}}</h5>
+                </a>
+                <p class="text-muted mb-1">Author: {{author}}</p>
+                <p>Durasi: {{get-durasi startDate endDate}}</p>
+                <div class="description-container">
+                  <p class="card-text">{{description}}</p>
+                </div>
+              </div>
+              <div class="d-flex tech-icon gap-3 ms-3">
+                {{#each technologies}}
+                  <img
+                    src="{{get-tech-icon this}}"
+                    alt="{{this}}"
+                    class="tech-icon"
+                  />
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
       </div>
     </div>
 
