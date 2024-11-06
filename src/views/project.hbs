@@ -57,12 +57,26 @@
                 >Testimonials</a>
               </li>
             </ul>
-            <a href="/contact" class="btn btn-pink">Contact Me</a>
-            <form action="/logout" method="post">
-                <button type="submit" class="btn btn-auth">
-                  <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </form>
+            <div class="d-flex align-items-center gap-3">
+              <a href="/contact" class="btn btn-pink">
+                <i class="fa-solid fa-envelope me-2"></i>Contact Me
+              </a>
+
+              {{#if user}}
+                <div class="d-flex align-items-center gap-2 active">
+                  <div class="user-welcome d-flex flex-row align-items-center gap-2">
+                    <i class="fa-solid fa-circle-user fa-lg"></i>
+                    <span class="user-name">{{user.name}}</span>
+                  </div>
+                  <form action="/logout" method="post">
+                    <button type="submit" class="btn">
+                      <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                  </form>
+                </div>
+
+              {{/if}}
+            </div>
           </div>
         </div>
       </div>
@@ -70,15 +84,31 @@
 
     <div class="project-container m-auto mt-3 mb-3 px-4 py-4 rounded">
       {{#if messages.success}}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
           {{messages.success}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
         </div>
       {{/if}}
       {{#if messages.error}}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
           {{messages.error}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
         </div>
       {{/if}}
 
@@ -192,10 +222,14 @@
               onchange="previewImage(event)"
             />
             <label class="input-group-text" for="upload-img">
-              <img src="assets/icon/paper-clip.png" alt="clip" style="width: 20px;">
+              <img
+                src="assets/icon/paper-clip.png"
+                alt="clip"
+                style="width: 20px;"
+              />
             </label>
           </div>
-          
+
           <div id="preview-container" class="d-none">
             <div class="position-relative" style="max-width: 300px;">
               <img
@@ -224,7 +258,9 @@
     <div class="bg-danger-subtle px-4 py-5">
       <div class="container">
         <h2 class="text-center mb-4">MY PROJECT</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+        <div
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"
+        >
           {{#each projects}}
             <div class="col">
               <div class="card h-100">
@@ -241,7 +277,9 @@
                       href="/project-detail/{{id}}"
                       class="text-decoration-none"
                     >
-                      <h5 class="project-title-link fs-3 text mb-1">{{nameProject}}</h5>
+                      <h5
+                        class="project-title-link fs-3 text mb-1"
+                      >{{nameProject}}</h5>
                     </a>
                     <div
                       class="d-flex justify-content-between align-items-center"
@@ -303,7 +341,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
+    {{! <script>
       function previewImage(event) {
         const preview = document.getElementById('preview');
         const previewContainer = document.getElementById('preview-container');
@@ -330,7 +368,7 @@
         previewContainer.classList.add('d-none');
         fileInput.value = '';
       }
-    </script>
+    </script> }}
 
     <script>
       {{{validateForm}}}
