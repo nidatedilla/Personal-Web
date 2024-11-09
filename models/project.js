@@ -13,23 +13,20 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-
   Project.init({
-    name: DataTypes.STRING(100),
+    name: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     description: DataTypes.TEXT,
-    technologies: DataTypes.ARRAY(DataTypes.STRING),
-    image: DataTypes.STRING(255),
-    author_id: DataTypes.INTEGER,
+    technologies: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: []
+    },
+    image: DataTypes.STRING,
+    author_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Project',
-    tableName: 'projects',
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
   });
-
   return Project;
 };

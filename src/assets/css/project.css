@@ -23,8 +23,7 @@ input {
 
 .tech-icon {
   width: 35px !important;
-  height: 35px !important;
-  object-fit: contain;
+  height: auto !important;
 }
 
 .duration-icon {
@@ -132,7 +131,6 @@ input {
 
 .description-container {
   position: relative;
-  flex-grow: 1;
 }
 
 .card-img-container {

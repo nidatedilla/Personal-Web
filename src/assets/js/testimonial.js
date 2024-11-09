@@ -1,124 +1,89 @@
-// Class untuk testimonial
-class Testimonial {
-  #image = "";
-  #content = "";
-  #author = "";
-  #rating = 0;
+const testimonialData = [
+  {
+    author: "Blackpink",
+    content: "MasyaAllah Tabarakallah",
+    image: "https://i.pinimg.com/736x/06/93/22/06932282d555bff6c80e40dea2b74ac9.jpg",
+    rating: 5,
+  },
+  {
+    author: "Jisoo",
+    content: "Keren bangeet, ampe keselek!!",
+    image: "https://pbs.twimg.com/media/DSjMkl9U8AAp77O.jpg",
+    rating: 4,
+  },
+  {
+    author: "Rose",
+    content: "Waaww amazing, mantap bangeet!!",
+    image: "https://i.pinimg.com/736x/c0/8a/e6/c08ae6866e010451caccf0ae3d801ae1.jpg",
+    rating: 3,
+  },
+  {
+    author: "Lisa",
+    content: "Gini amat",
+    image: "https://i.pinimg.com/236x/28/d0/9c/28d09cf4e80f471fda6b4c7e45ba130b.jpg",
+    rating: 2,
+  },
+  {
+    author: "Jennie",
+    content: "Ewwh",
+    image: "https://stickerly.pstatic.net/sticker_pack/T0AdlPW2iS4ZPDncPPwYw/2RQL08/3/2c4e2a4e-a2bc-41a8-a9a7-cea2e44d3675.png",
+    rating: 1,
+  },
+];
 
-  constructor(image, content, author, rating) {
-    this.#image = image;
-    this.#content = content;
-    this.#author = author;
-    this.#rating = rating;
-  }
+function generateTestimonialCard(testimonial) {
+  const stars = Array(5).fill(0).map((_, i) => 
+    `<i class="fas fa-star${i < testimonial.rating ? ' text-warning' : ' text-muted'}"></i>`
+  ).join('');
 
-  get author() {
-    return this.#author;
-  }
-
-  get content() {
-    return this.#content;
-  }
-
-  get image() {
-    return this.#image;
-  }
-
-  get rating() {
-    return this.#rating;
-  }
-
-  get testimonialHTML() {
-    return `
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 testimonial-card shadow-sm">
-          <img src="${this.#image}" class="testimonial-image" alt="Testimonial Image">
-          <div class="card-body">
-            <p class="card-text">"${this.#content}"</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">- ${this.#author}</small>
-              <div class="text-warning">
-                ${this.#getRatingStars()}
-              </div>
+  return `
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 testimonial-card shadow-sm">
+        <img src="${testimonial.image}" class="testimonial-image" alt="Testimonial Image">
+        <div class="card-body">
+          <p class="card-text">"${testimonial.content}"</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">- ${testimonial.author}</small>
+            <div>
+              ${stars}
             </div>
           </div>
         </div>
       </div>
-    `;
-  }
-
-  #getRatingStars() {
-    let stars = '';
-    for (let i = 0; i < 5; i++) {
-      stars += `<i class="fas fa-star${i < this.#rating ? '' : ' text-muted'}"></i>`;
-    }
-    return stars;
-  }
+    </div>
+  `;
 }
 
-// Fungsi untuk mengambil semua testimonial
-async function getAllTestimonials() {
-  // Gunakan data dari testimonialData langsung
-  return testimonialData.map(item => new Testimonial(
-    item.image,
-    item.content,
-    item.author,
-    item.rating
-  ));
-}
-
-// Fungsi untuk mengambil testimonial berdasarkan rating
-async function getTestimonialsByRating(rating) {
-  // Filter data berdasarkan rating
-  const filteredData = testimonialData.filter(item => item.rating === rating);
-  return filteredData.map(item => new Testimonial(
-    item.image,
-    item.content,
-    item.author,
-    item.rating
-  ));
-}
-
-// Fungsi untuk menampilkan testimonial
-async function renderTestimonials(testimonials) {
-  const testimonialContainer = document.getElementById('testimonials');
-  testimonialContainer.innerHTML = testimonials.map(testimonial => 
-    testimonial.testimonialHTML
-  ).join('');
-}
-
-// Event handler untuk button All
-async function getAllTesti(button) {
-  const testimonials = await getAllTestimonials();
-  renderTestimonials(testimonials);
-  if (button) {
-    setActiveButton(button);
-  }
-}
-
-// Event handler untuk button rating
-async function getTestiByStar(rating, button) {
-  const testimonials = await getTestimonialsByRating(rating);
-  renderTestimonials(testimonials);
+function getAllTesti(button) {
+  const testimonialHTML = testimonialData
+    .map(testimonial => generateTestimonialCard(testimonial))
+    .join('');
+  
+  document.getElementById("testimonials").innerHTML = testimonialHTML;
   setActiveButton(button);
 }
 
-// Fungsi untuk mengatur active button
+function getTestiByStar(rating, button) {
+  const filteredData = testimonialData.filter(item => item.rating === rating);
+  const testimonialHTML = filteredData
+    .map(testimonial => generateTestimonialCard(testimonial))
+    .join('');
+  
+  document.getElementById("testimonials").innerHTML = testimonialHTML;
+  setActiveButton(button);
+}
+
 function setActiveButton(button) {
-  // Hapus class active dari semua button
   document.querySelectorAll('.btn-outline-primary').forEach(btn => {
     btn.classList.remove('active');
   });
-  // Tambah class active ke button yang diklik
-  button.classList.add('active');
+  if (button) {
+    button.classList.add('active');
+  }
 }
 
-// Load testimonials saat halaman dibuka
-document.addEventListener('DOMContentLoaded', async function() {
-  // Aktifkan tombol All saat pertama load
+document.addEventListener('DOMContentLoaded', function() {
   const allButton = document.querySelector('.btn-outline-primary');
   allButton.classList.add('active');
-  
-  // Load semua testimonial tanpa parameter button
-  await getAllTesti();
+  getAllTesti(allButton);
 });

@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const hbs = require("hbs");
+const pg = require("pg");
 require("./src/libs/hbs-helper");
 const config = require("./config/config");
 const { Sequelize, QueryTypes } = require("sequelize");
@@ -12,9 +13,8 @@ const flash = require("express-flash");
 const upload = require("./src/middlewares/upload-file");
 const fs = require('fs');
 
-require("dotenv").config()
-
-const environment = process.env.NODE_ENV
+require("dotenv").config();
+const environment = process.env.NODE_ENV || 'development';
 const sequelize = new Sequelize(config[environment]);
 
 app.set("view engine", "hbs");
@@ -176,11 +176,13 @@ async function project(req, res) {
 }
 
 function testimonial(req, res) {
-  res.render("testimonial");
+  const user = req.session.user;
+  res.render("testimonial", { user });
 }
 
 function contact(req, res) {
-  res.render("contact");
+  const user = req.session.user;
+  res.render("contact", { user });
 }
 
 async function projectPost(req, res) {
@@ -325,6 +327,7 @@ async function editProjectPost(req, res) {
 
 async function projectDetail(req, res) {
   const { id } = req.params;
+  const user = req.session.user;
 
   const query = `
     SELECT 
@@ -347,7 +350,7 @@ async function projectDetail(req, res) {
     ? project.technologies
     : [];
 
-  res.render("project-detail", { project });
+  res.render("project-detail", { project, user });
 }
 
 app.listen(port, () => {

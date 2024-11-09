@@ -47,13 +47,12 @@ hbs.registerHelper("get-tech-icon", function(tech) {
   const icons = {
     "Node JS": "/assets/icon/nodeJS.png",
     "React JS": "/assets/icon/reactJS.png",
-    "Typescript": "/assets/icon/TS.png",
+    "JavaScript": "/assets/icon/javaScript.png",
     "Next JS": "/assets/icon/nextJS.png"
   };
   return icons[tech] || '';
 });
 
-// Cek includes untuk checkbox
 hbs.registerHelper("includes", function(array, value) {
   if (!array || !Array.isArray(array)) return false;
   return array.includes(value);
@@ -70,85 +69,40 @@ hbs.registerHelper("transformProject", function(project) {
   };
 });
 
-hbs.registerHelper("get-rating-stars", function(rating) {
-  let stars = '';
-  for (let i = 0; i < 5; i++) {
-    stars += `<i class="fas fa-star${i < rating ? '' : ' text-muted'}"></i>`;
-  }
-  return new hbs.SafeString(stars);
-});
-
-hbs.registerHelper("testimonial-card", function(testimonial) {
-  const stars = Array(5).fill(0).map((_, i) => 
-    `<i class="fas fa-star${i < testimonial.rating ? '' : ' text-muted'}"></i>`
-  ).join('');
-
-  return new hbs.SafeString(`
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 testimonial-card shadow-sm">
-        <img src="${testimonial.image}" class="testimonial-image" alt="Testimonial Image">
-        <div class="card-body">
-          <p class="card-text">"${testimonial.content}"</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted">- ${testimonial.author}</small>
-            <div class="text-warning">
-              ${stars}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
-
-hbs.registerHelper("filter-testimonials", function(testimonials, rating) {
-  if (!rating) return testimonials;
-  return testimonials.filter(testi => testi.rating === rating);
-});
-
-hbs.registerHelper("is-active", function(currentRating, buttonRating) {
-  return currentRating === buttonRating ? 'active' : '';
-});
-
+// Helper untuk form validation
 hbs.registerHelper("validateForm", function() {
   return `
     function validateForm() {
-      // Get all input elements
       const nameProject = document.getElementById('input-project');
       const startDate = document.getElementById('start-date');
       const endDate = document.getElementById('end-date');
       const description = document.getElementById('input-desc');
+      const fileInput = document.getElementById('upload-img');
+      const preview = document.getElementById('preview');
       
-      // Clear previous error messages
       clearErrors();
-      
       let isValid = true;
 
-      // Validate name
       if (!nameProject.value) {
         showError(nameProject, 'Project name is required');
         isValid = false;
       }
 
-      // Validate description
       if (!description.value) {
         showError(description, 'Description is required');
         isValid = false;
       }
 
-      // Validate start date
       if (!startDate.value) {
         showError(startDate, 'Start date is required');
         isValid = false;
       }
 
-      // Validate end date
       if (!endDate.value) {
         showError(endDate, 'End date is required');
         isValid = false;
       }
 
-      // Validate date range
       if (startDate.value && endDate.value) {
         const start = new Date(startDate.value);
         const end = new Date(endDate.value);
@@ -159,28 +113,82 @@ hbs.registerHelper("validateForm", function() {
         }
       }
 
+      // Cek apakah ini halaman edit dan ada gambar yang sudah ada
+      const hasExistingImage = preview.src && !preview.src.endsWith('#');
+      if (!fileInput.files[0] && !hasExistingImage) {
+        showError(fileInput, 'Image is required');
+        isValid = false;
+      }
+
       return isValid;
     }
 
     function showError(input, message) {
-      // Create error element
       const errorDiv = document.createElement('div');
       errorDiv.className = 'error-message';
       errorDiv.style.color = 'red';
       errorDiv.style.fontSize = '12px';
       errorDiv.style.marginTop = '5px';
       errorDiv.innerHTML = message;
-      
-      // Insert error after input
-      input.parentNode.appendChild(errorDiv);
+
+      // Cari input group dan tambahkan error setelahnya
+      const inputGroup = input.closest('.input-group');
+      if (inputGroup) {
+        inputGroup.after(errorDiv);
+      } else {
+        input.parentNode.appendChild(errorDiv);
+      }
     }
 
     function clearErrors() {
-      // Remove all error messages
       const errors = document.getElementsByClassName('error-message');
       while(errors.length > 0) {
         errors[0].parentNode.removeChild(errors[0]);
       }
+    }
+
+    // Add event listeners for all inputs
+    document.getElementById('input-project').addEventListener('input', clearErrors);
+    document.getElementById('start-date').addEventListener('change', clearErrors);
+    document.getElementById('end-date').addEventListener('change', clearErrors);
+    document.getElementById('input-desc').addEventListener('input', clearErrors);
+    document.getElementById('upload-img').addEventListener('change', function(event) {
+      clearErrors();
+      previewImage(event);
+    });
+  `;
+});
+
+// Helper untuk image preview
+hbs.registerHelper("imagePreviewScript", function() {
+  return `
+    function previewImage(event) {
+      const preview = document.getElementById('preview');
+      const previewContainer = document.getElementById('preview-container');
+      const file = event.target.files[0];
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          preview.src = reader.result;
+          previewContainer.style.display = 'block';
+          previewContainer.classList.remove('d-none');
+        }
+        reader.readAsDataURL(file);
+      } else {
+        removeImage();
+      }
+    }
+
+    function removeImage() {
+      const preview = document.getElementById('preview');
+      const previewContainer = document.getElementById('preview-container');
+      const fileInput = document.getElementById('upload-img');
+      
+      preview.src = '#';
+      previewContainer.style.display = 'none';
+      previewContainer.classList.add('d-none');
+      fileInput.value = '';
     }
   `;
 });

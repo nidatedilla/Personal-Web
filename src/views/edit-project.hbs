@@ -145,12 +145,12 @@
                 class="form-check-input"
                 type="checkbox"
                 name="technologies"
-                value="Typescript"
-                id="typescript"
-                {{#if (includes project.technologies "Typescript")}}checked{{/if}}
+                value="JavaScript"
+                id="JavaScript"
+                {{#if (includes project.technologies "JavaScript")}}checked{{/if}}
               />
-              <label class="form-check-label" for="typescript">
-                Typescript
+              <label class="form-check-label" for="JavaScript">
+                JavaScript
               </label>
             </div>
             <div class="form-check">
@@ -219,33 +219,7 @@
     ></script>
     <script>
       {{{validateForm}}}
-
-      function previewImage(event) {
-        const preview = document.getElementById('preview');
-        const previewContainer = document.getElementById('preview-container');
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = function() {
-          preview.src = reader.result;
-          previewContainer.style.display = 'block';
-        }
-
-        if (file) {
-          reader.readAsDataURL(file);
-        } else {
-          removeImage();
-        }
-      }
-
-      function removeImage() {
-        const preview = document.getElementById('preview');
-        const previewContainer = document.getElementById('preview-container');
-        const fileInput = document.getElementById('upload-img');
-        preview.src = '#';
-        previewContainer.style.display = 'none';
-        fileInput.value = '';
-      }
+      {{{imagePreviewScript}}}
     </script>
   </body>
 </html>
